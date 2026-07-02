@@ -8,7 +8,11 @@
   const ctx = canvas.getContext('2d');
   const overlay = document.getElementById('overlay');
   const overlayText = document.getElementById('overlay-text');
+  const overlayScore = document.getElementById('overlay-score');
   const restartBtn = document.getElementById('restart-btn');
+  const scoreEl = document.getElementById('score');
+
+  const LINE_SCORES = { 1: 40, 2: 100, 3: 300, 4: 1200 };
 
   const COLORS = {
     I: '#4dd0e1',
@@ -46,7 +50,7 @@
 
   const PIECE_TYPES = Object.keys(SHAPES);
 
-  let board, current, gameOver, dropCounter, lastTime, rafId;
+  let board, current, gameOver, dropCounter, lastTime, rafId, score;
 
   function createBoard() {
     return Array.from({ length: ROWS }, () => Array(COLS).fill(null));
@@ -109,18 +113,27 @@
       const by = current.y + y;
       if (by >= 0) board[by][bx] = COLORS[current.type];
     });
-    clearLines();
+    const cleared = clearLines();
+    if (cleared > 0) addScore(cleared);
     current = spawnPiece();
   }
 
   function clearLines() {
+    let cleared = 0;
     for (let y = ROWS - 1; y >= 0; y--) {
       if (board[y].every(cell => cell !== null)) {
         board.splice(y, 1);
         board.unshift(Array(COLS).fill(null));
+        cleared++;
         y++;
       }
     }
+    return cleared;
+  }
+
+  function addScore(linesCleared) {
+    score += LINE_SCORES[linesCleared] || 0;
+    scoreEl.textContent = score;
   }
 
   function move(dx, dy) {
@@ -139,6 +152,7 @@
   function endGame() {
     gameOver = true;
     overlayText.textContent = 'Game Over';
+    overlayScore.textContent = `Score: ${score}`;
     overlay.classList.remove('hidden');
   }
 
@@ -185,6 +199,8 @@
     gameOver = false;
     dropCounter = 0;
     lastTime = 0;
+    score = 0;
+    scoreEl.textContent = score;
     overlay.classList.add('hidden');
     current = spawnPiece();
     if (rafId) cancelAnimationFrame(rafId);
