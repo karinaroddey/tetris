@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tetris</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-wrap">
+    <h1>Tetris</h1>
+    <div class="board-wrap">
+      <canvas id="board" width="200" height="400"></canvas>
+      <div id="overlay" class="overlay hidden">
+        <p id="overlay-text">Game Over</p>
+        <button id="restart-btn">Restart</button>
+      </div>
+    </div>
+    <p class="hint">← → move &nbsp; ↑ rotate &nbsp; ↓ soft drop</p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

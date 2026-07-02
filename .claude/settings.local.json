@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m http.server 8791)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8791/index.html)",
+      "Bash(node --check /Users/karina/tetris/script.js)",
+      "Skill(run)",
+      "Bash(python3 -c \"import playwright\")",
+      "Bash(npx --version)",
+      "Bash(python3 *)",
+      "Bash(osascript -e 'tell application \"Safari\" to activate' -e 'tell application \"Safari\" to open location \"http://localhost:8791/index.html\"')",
+      "Bash(screencapture -x /private/tmp/claude-503/-Users-karina-tetris/0646600e-e6e6-474f-9304-5d557fc79811/scratchpad/tetris1.png)",
+      "Bash(lsof -nP -iTCP:8791 -sTCP:LISTEN)"
+    ]
+  }
+}
