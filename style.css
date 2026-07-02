@@ -24,6 +24,14 @@ h1 {
   letter-spacing: 4px;
 }
 
+.score-wrap {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #4dd0e1;
+}
+
 .board-wrap {
   position: relative;
 }
@@ -63,6 +71,12 @@ canvas {
   font-size: 28px;
   margin: 0 0 16px;
   color: #ff5c5c;
+}
+
+.overlay #overlay-score {
+  font-size: 18px;
+  color: #eee;
+  margin-top: -8px;
 }
 
 .overlay button {
